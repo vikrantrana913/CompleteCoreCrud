@@ -1,0 +1,121 @@
+﻿@model CoreProjectVikrantPractice1.Models.CandidateDBModel
+@{
+    ViewData["Title"] = "Candidate Registration";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Employee Registration Form</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" asp-controller="Employee" method="post" enctype="multipart/form-data">
+                <div class="row g-3">
+
+                    <!-- Name -->
+                    <div class="col-md-6">
+                        <label asp-for="Name" class="form-label fw-bold"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Gender</label>
+                        <div class="d-flex gap-3 mt-2">
+                            <div class="form-check">
+                                <input type="radio" asp-for="Gender" value="Male" class="form-check-input" id="male" />
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" asp-for="Gender" value="Female" class="form-check-input" id="female" />
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Country -->
+                    <div class="col-md-4">
+                        <label asp-for="CountryId"  class="form-label fw-bold">Country</label>
+                        <select asp-for="CountryId" id"country" asp-items="Model.Countries" class="form-select"></select>
+                    </div>
+
+                    <!-- State -->
+                    <div class="col-md-4">
+                        <label asp-for="StateId" class="form-label fw-bold">State</label>
+                        <select asp-for="StateId" id"state" asp-items="Model.States" class="form-select"></select>
+                    </div>
+
+                    <!-- City -->
+                    <div class="col-md-4">
+                        <label asp-for="CityId" class="form-label fw-bold">City</label>
+                        <select asp-for="CityId" id"city" asp-items="Model.Cities" class="form-select"></select>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="col-md-12">
+                        <label class="form-label fw-bold">Skills</label>
+                        <div class="d-flex gap-4">
+                            <div class="form-check">
+                                <input type="checkbox" name="Skills" value="1" class="form-check-input" id="python" />
+                                <label class="form-check-label" for="python">Python</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="Skills" value="2" class="form-check-input" id="java" />
+                                <label class="form-check-label" for="java">Java</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo -->
+                    <div class="col-md-6">
+                        <label asp-for="Photo" class="form-label fw-bold">Upload Photo</label>
+                        <input asp-for="Photo" type="file" class="form-control" />
+                    </div>
+
+                    <!-- Designation -->
+                    <div class="col-md-6">
+                        <label asp-for="DesignationId" class="form-label fw-bold">Designation</label>
+                        <select asp-for="DesignationId" asp-items="Model.Designations" class="form-select"></select>
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="mt-4 d-flex justify-content-end gap-2">
+                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+            <script>
+                $(document).ready(function(){
+                    $('#country').change(function(){
+                        var countryId=$(this).val();
+                        $('#state').empty();
+                        $('#state').append('<option>--Select State--</option>');
+                        $('#city').empty();
+                        $('#city').append('<option>--Select City--</option>');
+
+                        if(countryId)
+                        {
+                            $.ajax({
+                                url:'@Url.Action("GetStateName","Home")',
+                                type:'POST',
+                                data:{countryId:countryId}
+                                success: function(states)
+                                {
+                                    $.each(states, function(i,state)){
+                                        $('#state').append('<option value"'+state.StateId+'">'+state.StateName+'</option>');
+                                    });
+                                },
+                                error: function() {
+                                    alert('Error is runnig');
+                                }
+                                
+                                });
+                        
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</div>
