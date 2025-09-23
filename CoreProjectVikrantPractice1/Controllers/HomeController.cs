@@ -1,29 +1,42 @@
-using System.Diagnostics;
 using CoreProjectVikrantPractice1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Mono.TextTemplating;
+using System.Diagnostics;
 
 namespace CoreProjectVikrantPractice1.Controllers
 {
     public class HomeController : Controller
     {
         private readonly CandidateDBContext db;
-
         private readonly IWebHostEnvironment _ev;
 
-       public IActionResult Create()
+        public HomeController(CandidateDBContext _db, IWebHostEnvironment ev)
+        {
+            db = _db;
+            _ev = ev;
+        }
+
+      
+        public IActionResult Create()
        {
+            var row = db.listOfDesingnation();
+            ViewBag.Desingnation = new SelectList(row,"JobId", "JobTitle");
             var list = db.GetCountry();
-            ViewBag.Country = new SelectList("CountryId", "CountryName");
+            ViewBag.Country = new SelectList(list,"CountryId", "CountryName");
             return View();
        }
 
+        [HttpPost]
         public JsonResult GetStateName(int countryid)
         {
-            var row = db.GetStates(countryid);
-            return Json(row);
+            var state = db.GetStates(countryid);
+            return Json(state);
+
+
         }
 
+        [HttpPost]
         public JsonResult GetCityName(int stateid)
         {
             var row = db.GetCity(stateid);
@@ -67,7 +80,12 @@ namespace CoreProjectVikrantPractice1.Controllers
 
                 return RedirectToAction("Index");
             }
+            // Model state invalid: repopulate dropdown data
+            var row = db.listOfDesingnation();
+            ViewBag.Desingnation = new SelectList(row, "JobId", "JobTitle");
 
+            var list = db.GetCountry();
+            ViewBag.Country = new SelectList(list, "CountryId", "CountryName");
             return View(candidateDB);
         }
 

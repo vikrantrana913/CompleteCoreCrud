@@ -57,4 +57,10 @@ wwwroot\lib\jquery-validation\LICENSE.md
 wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\jquery\jquery.js
+wwwroot\lib\jquery\jquery\jquery.min.js
+wwwroot\lib\jquery\jquery\jquery.min.map
+wwwroot\lib\jquery\jquery\jquery.slim.js
+wwwroot\lib\jquery\jquery\jquery.slim.min.js
+wwwroot\lib\jquery\jquery\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt

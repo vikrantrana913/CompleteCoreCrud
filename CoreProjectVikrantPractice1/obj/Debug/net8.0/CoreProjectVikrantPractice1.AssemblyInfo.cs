@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoreProjectVikrantPractice1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58decb852d2f59c029dfc7eac87b3f1e5ee0df24")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoreProjectVikrantPractice1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoreProjectVikrantPractice1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

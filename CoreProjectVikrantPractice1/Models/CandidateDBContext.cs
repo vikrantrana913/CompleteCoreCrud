@@ -12,6 +12,23 @@ namespace CoreProjectVikrantPractice1.Models
             Mycon = configuration.GetConnectionString("MyConnection");
         }
 
+        public List<DesingnationDbModel> listOfDesingnation()
+        {
+            List<DesingnationDbModel> desingnationlist=new List<DesingnationDbModel>();
+            SqlConnection con = new SqlConnection(Mycon);
+            SqlCommand cmd = new SqlCommand("GetDesingnationList",con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            SqlDataReader sdr = cmd.ExecuteReader();
+            while (sdr.Read())
+            {
+                DesingnationDbModel desingnationDbModel = new DesingnationDbModel();
+                desingnationDbModel.JobId = Convert.ToInt32(sdr["JobId"].ToString());
+                desingnationDbModel.JobTitle = sdr["JobTitle"].ToString();
+                desingnationlist.Add(desingnationDbModel);  
+            }
+            return desingnationlist;
+        }
         public void CreateCandidateData(CandidateDBModel candidateDBModel)
         {
 
@@ -59,7 +76,7 @@ namespace CoreProjectVikrantPractice1.Models
             SqlConnection con = new SqlConnection(Mycon);
             SqlCommand cmd = new SqlCommand("GetStateList", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@CountId", CountId);
+            cmd.Parameters.AddWithValue("@CountId",CountId);
             con.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
             while(sdr.Read())
@@ -78,7 +95,7 @@ namespace CoreProjectVikrantPractice1.Models
             SqlConnection con = new SqlConnection(Mycon);
             SqlCommand cmd = new SqlCommand("GetCityList", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@StatId", statId);
+            cmd.Parameters.AddWithValue("@StatId",statId);
             con.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
             while(sdr.Read())

@@ -1,37 +1,46 @@
 Insert into Country(CountryName)values('Pakistan')
 
+--Insert states of India
 Insert into State(StateName,CountId)Values('UP',1)
 Insert into State(StateName,CountId)Values('Vihar',1)
 Insert into State(StateName,CountId)Values('Hariyana',1)
 Insert into State(StateName,CountId)Values('Panjab',1)
 
-Select * from State
+Select * from Country
 
+Update Country set CountryName='USA' where CountryId=2
+
+--Insert city of UP
 INSERT INTO City(CityName, StatId) VALUES
 ('Lucknow', 1),
 ('Kanpur', 1),
 ('Varanasi', 1),
 ('Agra', 1);
 
+--insert city of vihar
 INSERT INTO City (CityName, StatId) VALUES
 ('Patna', 2),
 ('Gaya', 2),
 ('Bhagalpur', 2),
 ('Muzaffarpur', 2);
 
-
+--insert city of vihar
 INSERT INTO City (CityName, StatId) VALUES
 ('Gurgaon', 3),
 ('Faridabad', 3),
 ('Panipat', 3),
 ('Hisar', 3);
 
+
+-- insert city of punjab
 INSERT INTO City(CityName, StatId) VALUES
 ('Amritsar', 4),
 ('Ludhiana', 4),
 ('Patiala', 4),
 ('Jalandhar', 4);
 
+
+--states of new york
 insert into State(StateName,CountId)Values('New York',2)
 insert into State(StateName,CountId)Values('Texas',2)
 insert into State(StateName,CountId)Values('California',2)
@@ -122,3 +131,11 @@ INSERT INTO City(CityName, StatId) VALUES ('Skardu', 18);
 INSERT INTO City(CityName, StatId) VALUES ('Muzaffarabad', 19);
 INSERT INTO City(CityName, StatId) VALUES ('Mirpur', 19);
 INSERT INTO City(CityName, StatId) VALUES ('Kotli', 19);
+
+select * from City
+
+insert into Desingnation(Jobtitle)values('Manager')
+insert into Desingnation(Jobtitle)values('Software Developer')
+insert into Desingnation(Jobtitle)values('Accountant')
+insert into Desingnation(Jobtitle)values('Human Resources')
+insert into Desingnation(Jobtitle)values('Admin')

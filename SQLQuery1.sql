@@ -12,7 +12,7 @@ City bigint foreign key references City(CityId),
 Python bit,
 Java bit,
 Photo nvarchar(50),
-Desingnation bigint
+Desingnation bigint foreign key references Desingnation(JobId)
 )
 
 Create table Desingnation
@@ -20,6 +20,9 @@ Create table Desingnation
 JobId bigint primary key identity(1,1),
 Jobtitle nvarchar(50)
 )
+
+select * from Desingnation
+
 
 Create table Country
 (
@@ -60,6 +63,7 @@ Values(@Name,@Gender,@Country,@State,@City,@Python,@Java,@Photo,@Desingnation)
 End
 
 
+
 Create procedure GetCountryList
 as
 begin
@@ -84,4 +88,10 @@ begin
 select * from City where StatId=@StatId
 end
 
+Create procedure GetDesingnationList
+as
+begin
+select * from Desingnation
+end
 
+exec GetDesingnationList

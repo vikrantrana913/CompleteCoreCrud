@@ -1,121 +1,171 @@
 ﻿@model CoreProjectVikrantPractice1.Models.CandidateDBModel
+@using CoreProjectVikrantPractice1.Models
+
 @{
-    ViewData["Title"] = "Candidate Registration";
+    ViewData["Title"] = "Create Candidate";
+
 }
 
 <div class="container mt-5">
-    <div class="card shadow-lg border-0">
+    <div class="card shadow-lg">
         <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Employee Registration Form</h3>
+            <h3 class="mb-0">Create Candidate</h3>
         </div>
         <div class="card-body">
-            <form asp-action="Create" asp-controller="Employee" method="post" enctype="multipart/form-data">
-                <div class="row g-3">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
 
+                <div class="row g-3">
                     <!-- Name -->
-                    <div class="col-md-6">
-                        <label asp-for="Name" class="form-label fw-bold"></label>
+                    <div class="col-md-4">
+                        <label asp-for="Name" class="form-label"></label>
                         <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
 
                     <!-- Gender -->
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Gender</label>
-                        <div class="d-flex gap-3 mt-2">
-                            <div class="form-check">
-                                <input type="radio" asp-for="Gender" value="Male" class="form-check-input" id="male" />
-                                <label class="form-check-label" for="male">Male</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" asp-for="Gender" value="Female" class="form-check-input" id="female" />
-                                <label class="form-check-label" for="female">Female</label>
-                            </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Gender</label>
+                        <div class="form-check">
+                            <input type="radio" asp-for="Gender" value="Male" class="form-check-input" id="genderMale" />
+                            <label class="form-check-label" for="genderMale">Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" asp-for="Gender" value="Female" class="form-check-input" id="genderFemale" />
+                            <label class="form-check-label" for="genderFemale">Female</label>
                         </div>
                     </div>
 
+                    <!-- Designation -->
+                    <div class="col-md-4">
+                        <label class="form-label">Designation</label>
+                        <select asp-for="Designation" asp-items="ViewBag.Desingnation" class="form-select" id="Desingnation">
+                            <option value="">Select Designation</option>
+                        </select>
+                        <span asp-validation-for="Designation" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-2">
                     <!-- Country -->
                     <div class="col-md-4">
-                        <label asp-for="CountryId"  class="form-label fw-bold">Country</label>
-                        <select asp-for="CountryId" id"country" asp-items="Model.Countries" class="form-select"></select>
+                        <label class="form-label">Country</label>
+                        <select asp-for="Country" asp-items="ViewBag.Country" class="form-select" id="country">
+                            <option value="">Select Country</option>
+                        </select>
+                        <span asp-validation-for="Country" class="text-danger"></span>
                     </div>
 
                     <!-- State -->
                     <div class="col-md-4">
-                        <label asp-for="StateId" class="form-label fw-bold">State</label>
-                        <select asp-for="StateId" id"state" asp-items="Model.States" class="form-select"></select>
+                        <label class="form-label">State</label>
+                        <select asp-for="State" asp-items="Enumerable.Empty<SelectListItem>()" class="form-select" id="state">
+                            <option value="">Select State</option>
+                        </select>
+                        
+                        <span asp-validation-for="State" class="text-danger"></span>
                     </div>
 
                     <!-- City -->
                     <div class="col-md-4">
-                        <label asp-for="CityId" class="form-label fw-bold">City</label>
-                        <select asp-for="CityId" id"city" asp-items="Model.Cities" class="form-select"></select>
+                        <label class="form-label">City</label>
+                        <select asp-for="City" asp-items="Enumerable.Empty<SelectListItem>()" class="form-select" id="city">
+                            <option value="">Select City</option>
+                        </select>
+                        <span asp-validation-for="City" class="text-danger"></span>
                     </div>
+                </div>
 
-                    <!-- Skills -->
-                    <div class="col-md-12">
-                        <label class="form-label fw-bold">Skills</label>
-                        <div class="d-flex gap-4">
-                            <div class="form-check">
-                                <input type="checkbox" name="Skills" value="1" class="form-check-input" id="python" />
-                                <label class="form-check-label" for="python">Python</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" name="Skills" value="2" class="form-check-input" id="java" />
-                                <label class="form-check-label" for="java">Java</label>
-                            </div>
+                <!-- Skills -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Skills</label>
+                        <div class="form-check">
+                            <input type="checkbox" asp-for="Python" class="form-check-input" id="skillPython" />
+                            <label class="form-check-label" for="skillPython">Python</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" asp-for="Java" class="form-check-input" id="skillJava" />
+                            <label class="form-check-label" for="skillJava">Java</label>
                         </div>
                     </div>
 
                     <!-- Photo -->
                     <div class="col-md-6">
-                        <label asp-for="Photo" class="form-label fw-bold">Upload Photo</label>
-                        <input asp-for="Photo" type="file" class="form-control" />
+                        <label class="form-label">Upload Photo</label>
+                        <input type="file" asp-for="Photo" class="form-control" />
                     </div>
-
-                    <!-- Designation -->
-                    <div class="col-md-6">
-                        <label asp-for="DesignationId" class="form-label fw-bold">Designation</label>
-                        <select asp-for="DesignationId" asp-items="Model.Designations" class="form-select"></select>
-                    </div>
-
                 </div>
 
-                <!-- Buttons -->
-                <div class="mt-4 d-flex justify-content-end gap-2">
-                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                <!-- Submit -->
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success px-4">
+                        <i class="bi bi-check-circle"></i> Submit
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
                 </div>
             </form>
-            <script>
-                $(document).ready(function(){
-                    $('#country').change(function(){
-                        var countryId=$(this).val();
-                        $('#state').empty();
-                        $('#state').append('<option>--Select State--</option>');
-                        $('#city').empty();
-                        $('#city').append('<option>--Select City--</option>');
-
-                        if(countryId)
-                        {
-                            $.ajax({
-                                url:'@Url.Action("GetStateName","Home")',
-                                type:'POST',
-                                data:{countryId:countryId}
-                                success: function(states)
-                                {
-                                    $.each(states, function(i,state)){
-                                        $('#state').append('<option value"'+state.StateId+'">'+state.StateName+'</option>');
-                                    });
-                                },
-                                error: function() {
-                                    alert('Error is runnig');
-                                }
-                                
-                                });
-                        
-                    }
-                });
-            </script>
         </div>
     </div>
 </div>
+@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- AJAX Script -->
+<script>
+    $(document).ready(function () {
+        $('#country').change(function () {
+            var countryid = $(this).val();
+            $('#state').empty().append('<option value="">Select State</option>');
+            $('#city').empty().append('<option value="">Select City</option>');
+
+            if (countryid) {
+                $.ajax({
+                    url: '/Home/GetStateName',
+                    type: 'POST',
+                    data: { countryid:countryid },
+                    success: function (states) {
+                        console.log(states);
+                        $.each(states, function (i, state) {
+                            $('#state').append('<option value="' +state.StateId+ '">'+state.StateName+'</option>');
+                        });
+                    },
+                    error: function () {
+                        alert('⚠️ Unable to fetch states. Please try again.');
+                    }
+                });
+            }
+        });
+
+        $('#state').change(function () {
+            var stateid = $(this).val();
+            $('#city').empty().append('<option value="">Select City</option>');
+
+            if (stateid) {
+                $.ajax({
+                    url: '@Url.Action("GetCityName", "Home")',
+                    type: 'POST',
+                    data:{ stateid:stateid },
+                    success: function (cities) {
+                        $.each(cities, function (i, city) {
+                            $('#city').append('<option value="' + city.CityId + '">' + city.CityName + '</option>');
+                        });
+                    },
+                    error: function () {
+                        alert('⚠️ Unable to fetch cities. Please try again.');
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+
+@section Scripts {
+    <!-- Bootstrap validation scripts -->
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        
+
+    }
+}

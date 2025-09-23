@@ -1,11 +1,13 @@
 using CoreProjectVikrantPractice1.Models;
+using System.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<CandidateDBModel>();
+builder.Services.AddScoped<CandidateDBContext>();
+
 
 var app = builder.Build();
 

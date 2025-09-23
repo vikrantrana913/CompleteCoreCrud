@@ -6451,23 +6451,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Shishodia\\.nuget\\packages\\": {},
+    "C:\\Users\\hp\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Shishodia\\source\\repos\\CoreProjectVikrantPractice1\\CoreProjectVikrantPractice1\\CoreProjectVikrantPractice1.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Desktop\\Self\\.NET\\ProjectCore\\CompleteCoreCrud\\CoreProjectVikrantPractice1\\CoreProjectVikrantPractice1.csproj",
       "projectName": "CoreProjectVikrantPractice1",
-      "projectPath": "C:\\Users\\Shishodia\\source\\repos\\CoreProjectVikrantPractice1\\CoreProjectVikrantPractice1\\CoreProjectVikrantPractice1.csproj",
-      "packagesPath": "C:\\Users\\Shishodia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Shishodia\\source\\repos\\CoreProjectVikrantPractice1\\CoreProjectVikrantPractice1\\obj\\",
+      "projectPath": "C:\\Users\\hp\\Desktop\\Self\\.NET\\ProjectCore\\CompleteCoreCrud\\CoreProjectVikrantPractice1\\CoreProjectVikrantPractice1.csproj",
+      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hp\\Desktop\\Self\\.NET\\ProjectCore\\CompleteCoreCrud\\CoreProjectVikrantPractice1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Shishodia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
